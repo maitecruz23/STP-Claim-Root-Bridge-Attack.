@@ -1,0 +1,55 @@
+
+! SWITCH L2
+
+enable
+configure terminal
+
+hostname SW
+
+
+spanning-tree mode rapid-pvst
+spanning-tree vlan 1 priority 32768
+
+
+! CONFIGURACIÓN DE PUERTOS
+
+
+
+interface GigabitEthernet0/0
+ description CONEXION R1-GATEWAY
+ switchport mode access
+ switchport access vlan 1
+ spanning-tree portfast
+ no shutdown
+
+interface GigabitEthernet0/1
+ description WIN-VICTIMA
+ switchport mode access
+ switchport access vlan 1
+ spanning-tree portfast
+ no shutdown
+
+
+interface GigabitEthernet0/2
+ description KALI-ATACANTE
+ switchport mode access
+ switchport access vlan 1
+ spanning-tree portfast
+ no shutdown
+
+
+interface GigabitEthernet0/3
+ description R2-DHCP-SERVER
+ switchport mode access
+ switchport access vlan 1
+ spanning-tree portfast
+ no shutdown
+
+do show interfaces status
+do show spanning-tree
+
+
+end
+write memory
+
+write memory
