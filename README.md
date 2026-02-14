@@ -20,6 +20,14 @@
 
 ---
 
+Video de Youtube
+https://youtu.be/LVTOOLftkvU
+
+
+
+
+
+
 ## 📋 Descripción
 
 Este laboratorio demuestra un ataque de **manipulación de topología STP** mediante la inyección de BPDUs (Bridge Protocol Data Units) maliciosas. El objetivo es forzar a un switch Cisco a reconocer una máquina atacante (Kali Linux) como el nuevo **Root Bridge** de la red, permitiendo potencialmente la interceptación de tráfico (Man-in-the-Middle).
