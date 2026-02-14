@@ -1,0 +1,24 @@
+
+# KALI LINUX - CONFIGURACIÓN ESTÁTICA
+
+
+
+sudo ip addr add 20.24.116.2/24 dev eth0
+sudo ip link set eth0 up
+sudo ip route add default via 20.24.116.1
+
+
+echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf
+
+
+echo "=== VERIFICANDO CONECTIVIDAD ==="
+ping -c 2 20.24.116.1
+ping -c 2 20.24.116.4
+ping -c 2 8.8.8.8
+
+
+sudo apt update
+sudo apt install python3-scapy python3-pip tcpdump -y
+
+
+sudo ip link set eth0 promisc on
