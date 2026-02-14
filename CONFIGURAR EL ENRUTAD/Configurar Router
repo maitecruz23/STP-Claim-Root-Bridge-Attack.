@@ -1,0 +1,38 @@
+
+ROUTER-1: GATEWAY A INTERNET
+
+enable
+configure terminal
+
+hostname R1-GATEWAY
+
+! INTERFAZ A INTERNET (Net/NAT)
+interface GigabitEthernet0/0
+ description CONEXION A INTERNET - NET
+ ip address dhcp
+ no shutdown
+ exit
+
+interface GigabitEthernet0/1
+ description CONEXION A SWITCH - LAN 20.24.116.0/24
+ ip address 20.24.116.1 255.255.255.0
+ no shutdown
+ exit
+
+
+access-list 1 permit 20.24.116.0 0.0.0.255
+ip nat inside source list 1 interface GigabitEthernet0/0 overload
+
+interface GigabitEthernet0/0
+ ip nat outside
+
+interface GigabitEthernet0/1
+ ip nat inside
+
+
+do show ip interface brief
+do show ip route
+
+! GUARDAR
+end
+write memory
