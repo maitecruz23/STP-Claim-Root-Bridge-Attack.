@@ -745,7 +745,7 @@ Este proyecto está licenciado bajo la **MIT License** - ver el archivo [LICENSE
 ```
 MIT License
 
-Copyright (c) 2026 [Tu Nombre]
+Copyright (c) 2026  Maitte Rodriguez
 
 Se concede permiso, de forma gratuita, a cualquier persona que obtenga una copia
 de este software y archivos de documentación asociados (el "Software"), para usar
